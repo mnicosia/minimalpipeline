@@ -1,6 +1,6 @@
 #! /bin/bash
 
-dirs=( "../desc/Iyas" "../desc/Limosine/types" )
+dirs=( "../desc/Iyas" )
 
 MAIN=org.apache.uima.tools.jcasgen.Jg
 
