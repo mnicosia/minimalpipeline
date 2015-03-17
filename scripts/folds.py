@@ -62,9 +62,6 @@ def main():
 	'''
 	qid2fold = { qid : fold for qid, fold in zip(qids, indexes)}
 	
-	#Uncomment this line for using folds from the EACL paper data
-	qid2fold = load_eacl_folds_data(n_folds)
-
 	'''
 		Create fold directories
 	'''
