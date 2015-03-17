@@ -28,3 +28,48 @@ UIMA tooling simplifies the development of typesystems and annotators in Eclipse
 following these instructions: http://tinyurl.com/UIMA4ECLIPSE. The useful UIMA visual
 tools (UIMA tooling) can be found at this software update address:
 http://www.apache.org/dist/uima/eclipse-update-site/.
+
+## Installation
+
+Clone the minimal pipeline from the repository with:
+
+```
+git clone https://github.com/mnicosia/minimalpipeline.git
+```
+
+Cd into the resources/ folder and execute the generate-types.sh script
+
+Now go to the parent directory and type:
+
+```
+mvn compile
+```
+
+Then
+
+```
+mvn clean dependency:copy-dependencies package
+```
+
+## Running the pipeline
+
+```
+./run.sh
+```
+
+Look into the run.sh script and the arguments/trec-en-pipeline-arguments.txt file to understand what is happening.  
+
+## Importing the project into Eclipse
+
+
+
+## Running an experiment
+
+### Compiling SVMLightTK
+
+Go to the tools/SVM-Light-1.5-rer/ folder and type:
+
+```
+  make clean  
+  make
+```
