@@ -66,7 +66,7 @@ public abstract class AnalyzerFactory {
 		 * The OpenNlpPosTagger is our choice for now.
 		 */
 		AnalysisEngine stanfordPosTagger = AnalysisEngineFactory
-				.createEngine(createEngineDescription(OpenNlpPosTagger.class,
+				.createEngine(createEngineDescription(StanfordPosTagger.class,
 						 StanfordPosTagger.PARAM_LANGUAGE, "en"));
 
 		AnalysisEngine stanfordLemmatizer = AnalysisEngineFactory

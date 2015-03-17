@@ -16,6 +16,7 @@ import qa.qcri.qf.pipeline.Analyzer;
 import qa.qcri.qf.pipeline.retrieval.Analyzable;
 import qa.qcri.qf.pipeline.retrieval.SimpleContent;
 import qa.qcri.qf.pipeline.serialization.UIMAFilePersistence;
+import qa.qcri.qf.pipeline.serialization.UIMANoPersistence;
 import qa.qcri.qf.pipeline.serialization.UIMAPersistence;
 import qa.qcri.qf.treemarker.MarkTreesOnRepresentation;
 import qa.qcri.qf.treemarker.MarkTwoAncestors;
@@ -48,7 +49,7 @@ public class TutorialExample {
 		/**
 		 * Instantiate a more complex multi-pipeline
 		 */
-		Analyzer analyzer = instantiateTrecAnalyzer(new UIMAFilePersistence("CASes/tutorial"));
+		Analyzer analyzer = instantiateTrecAnalyzer(new UIMANoPersistence());
 		
 		Analyzable question = new SimpleContent("tutorial-question",
 				"Who was elected President of South Africa in 1994?");
