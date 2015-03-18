@@ -65,8 +65,8 @@ public abstract class AnalyzerFactory {
 		 * StanfordPosTagger puts wrong POS-tags on parentheses
 		 * The OpenNlpPosTagger is our choice for now.
 		 */
-		AnalysisEngine stanfordPosTagger = AnalysisEngineFactory
-				.createEngine(createEngineDescription(StanfordPosTagger.class,
+		AnalysisEngine posTagger = AnalysisEngineFactory
+				.createEngine(createEngineDescription(OpenNlpPosTagger.class,
 						 StanfordPosTagger.PARAM_LANGUAGE, "en"));
 
 		AnalysisEngine stanfordLemmatizer = AnalysisEngineFactory
@@ -85,13 +85,13 @@ public abstract class AnalyzerFactory {
 
 
 		ae.addAE(stanfordSegmenter)
-			.addAE(stanfordPosTagger)
+			.addAE(posTagger)
 			.addAE(stanfordLemmatizer)
 			.addAE(illinoisChunker)
 			.addAE(stanfordNamedEntityRecognizer);
 
 		ae.addAE(stanfordSegmenter, QUESTION_ANALYSIS)
-			.addAE(stanfordPosTagger, QUESTION_ANALYSIS)
+			.addAE(posTagger, QUESTION_ANALYSIS)
 			.addAE(stanfordLemmatizer, QUESTION_ANALYSIS)
 			.addAE(illinoisChunker, QUESTION_ANALYSIS)
 			.addAE(stanfordNamedEntityRecognizer, QUESTION_ANALYSIS)
