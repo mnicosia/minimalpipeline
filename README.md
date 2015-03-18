@@ -144,3 +144,12 @@ The `python scripts/folds.py data/trec-en/ 5` command will use the data under th
 
 The `python scripts/svm_run_cv.py --params="-t 5 -F 3 -C + -W R -V R -m 400" --ncpus 2 data/trec-en/folds/` will launch the learning, the reranking and eventually, the evaluation which will be carried out on single folds and then used to produce metrics averaged on all folds. The `--ncpus` parameter can be used to parallelize the jobs.
  
+## Examples and tutorial
+
+You can find examples about the framework in the following package:
+
+```
+src/test/java/qa/qcri/qf/tutorial
+```
+
+Please go through the provided code and comments in order to have a better idea of the framework.
