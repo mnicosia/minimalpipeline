@@ -37,7 +37,13 @@ Clone the minimal pipeline from the repository with:
 git clone https://github.com/mnicosia/minimalpipeline.git
 ```
 
-Cd into the resources/ folder and execute the generate-types.sh script
+Cd into the resources/ folder and execute the generate-types.sh script:
+
+```
+cd resources/
+./generate-types.sh
+cd ..
+```
 
 Now go to the parent directory and type:
 
