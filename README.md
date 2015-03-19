@@ -30,7 +30,7 @@ Decompress the archive and set the $UIMA_HOME environmental variable to the
 UIMA distribution directory. If you use Linux or Mac please set the variable with:
 
 ```
-export UIMA_HOME="path/to/dir/uf/uima"
+export UIMA_HOME="path/to/dir/of/uima"
 ```
 
 Add the line to  ~/.bashrc or ~/.bash_profile in order to automatically set the variable in the future.
