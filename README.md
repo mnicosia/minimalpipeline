@@ -14,6 +14,12 @@ Please pull the latest version of the pipeline with:
 git pull origin master
 ```
 
+## References to documentation and tutorials
+
+* https://uima.apache.org/documentation.html  
+* https://uima.apache.org/uimafit.html  
+* https://dkpro-tutorials.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.tutorial/tags/dkprointro20130529/dkproIntroCore.pdf  
+
 ## Prerequisites
 
 ### UIMA
@@ -69,10 +75,6 @@ mvn clean dependency:copy-dependencies package
 ```
 
 Look into the run.sh script and the arguments/trec-en-pipeline-arguments.txt file to understand what is happening.  
-
-## Importing the project into Eclipse
-
-Import the project into Eclipse by clicking on File -> Import -> Existing Maven Projects. Select the pipeline folder and click on Finish.
 
 ## Running an experiment
 
@@ -172,3 +174,7 @@ UIMA tooling simplifies the development of typesystems and annotators in Eclipse
 following these instructions: http://tinyurl.com/UIMA4ECLIPSE. The useful UIMA visual
 tools (UIMA tooling) can be found at this software update address:
 http://www.apache.org/dist/uima/eclipse-update-site/.
+
+### Importing the project into Eclipse
+
+Import the project into Eclipse by clicking on File -> Import -> Existing Maven Projects. Select the pipeline folder and click on Finish.
