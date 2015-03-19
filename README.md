@@ -105,27 +105,29 @@ The program arguments are:
 
 This file contains all the actual arguments of the program.
 
-`-trainQuestionsPath data/trec-en/questions.txt`
+```
+-trainQuestionsPath data/trec-en/questions.txt  
 
-`-trainCandidatesPath data/trec-en/terrier.BM25b0.75_0`
+-trainCandidatesPath data/trec-en/terrier.BM25b0.75_0  
 
-`-trainCasesDir CASes/trec-en/`
+-trainCasesDir CASes/trec-en/  
 
-`-trainOutputDir data/trec-en/train/`
+-trainOutputDir data/trec-en/train/  
 
-`-testQuestionsPath data/trec-en/questions.txt`
+-testQuestionsPath data/trec-en/questions.txt  
 
-`-testCandidatesPath data/trec-en/terrier.BM25b0.75_0`
+-testCandidatesPath data/trec-en/terrier.BM25b0.75_0  
 
-`-testCasesDir CASes/trec-en/`
+-testCasesDir CASes/trec-en/  
 
-`-testOutputDir data/trec-en/test/`
+-testOutputDir data/trec-en/test/  
 
-`-candidatesToKeepInTrain 10`
+-candidatesToKeepInTrain 10  
 
-`-candidatesToKeepInTest 50`
+-candidatesToKeepInTest 50  
 
-`-lang en`
+-lang en  
+```
 
 The same files are passed in both training and testing since we will generate the training and test data in a cross validation fashion.
 
@@ -157,7 +159,9 @@ in order to take the training and testing examples produced by the pipeline and 
 
 The command:
 
-```python scripts/svm_run_cv.py --params="-t 5 -F 3 -C + -W R -V R -m 400" --ncpus 2 data/trec-en/folds/```
+```
+python scripts/svm_run_cv.py --params="-t 5 -F 3 -C + -W R -V R -m 400" --ncpus 2 data/trec-en/folds/
+```
 
 will launch the learning, the reranking and eventually, the evaluation, which will be carried out on the single folds. Also metrics averaged on all folds will be print on screen. The `--ncpus` parameter can be used to parallelize the jobs.
  
