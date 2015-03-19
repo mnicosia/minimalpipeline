@@ -145,11 +145,21 @@ Out of 824 questions only 416 are used to generate training examples because the
 
 ### Producing the folds
 
-The `python scripts/folds.py data/trec-en/ 5` command will use the data under the specified directory to output five folds. The scripts assumes that the train and test data are under the specified directory, and that they contains the examples and metadata in files having specific names.
+Run:
+
+```
+python scripts/folds.py data/trec-en/ 5
+```
+
+in order to take the training and testing examples produced by the pipeline and split them into five folds. The scripts assumes that the train and test data are contained in the given directory.
 
 ### Learning, reranking and evaluation
 
-The `python scripts/svm_run_cv.py --params="-t 5 -F 3 -C + -W R -V R -m 400" --ncpus 2 data/trec-en/folds/` will launch the learning, the reranking and eventually, the evaluation which will be carried out on single folds and then used to produce metrics averaged on all folds. The `--ncpus` parameter can be used to parallelize the jobs.
+The command:
+
+```python scripts/svm_run_cv.py --params="-t 5 -F 3 -C + -W R -V R -m 400" --ncpus 2 data/trec-en/folds/```
+
+will launch the learning, the reranking and eventually, the evaluation, which will be carried out on the single folds. Also metrics averaged on all folds will be print on screen. The `--ncpus` parameter can be used to parallelize the jobs.
  
 ## Examples and tutorial
 
