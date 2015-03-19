@@ -9,7 +9,6 @@ import java.util.Map;
 import org.apache.uima.UIMAException;
 import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.jcas.JCas;
-import org.uimafit.util.JCasUtil;
 
 import qa.qcri.qf.datagen.DataObject;
 import qa.qcri.qf.datagen.Labelled;
@@ -24,8 +23,6 @@ import util.ChunkReader;
 import com.google.common.base.Function;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class GenericPipeline {
 
