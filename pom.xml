@@ -244,6 +244,26 @@
 	    		</execution>
 	  		</executions>
 		</plugin>
+		<plugin>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>jcasgen-maven-plugin</artifactId>
+			<configuration>
+				<typeSystemIncludes>
+					<include>desc/Iyas/*.xml</include>
+				</typeSystemIncludes>
+				<typeSystemExcludes>
+					<exclude>desc/Iyas/*Descriptor.xml</exclude>
+				</typeSystemExcludes>
+			</configuration>
+			<executions>
+				<execution>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+
 	</plugins>
 	<pluginManagement>
 		<plugins>
