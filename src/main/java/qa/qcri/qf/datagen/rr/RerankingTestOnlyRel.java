@@ -20,6 +20,7 @@ import qa.qcri.qf.trees.nodes.RichNode;
 import qa.qcri.qf.trees.providers.TokenTreeProvider;
 import qa.qcri.qf.trees.pruning.PosChunkPruner;
 import qa.qcri.qf.trees.pruning.strategies.PruneIfNodeIsWithoutMetadata;
+import util.Stopwords;
 import cc.mallet.types.FeatureVector;
 
 import com.google.common.base.Function;
@@ -59,6 +60,8 @@ public class RerankingTestOnlyRel implements Reranking {
 	
 	private PosChunkPruner pruner;
 	
+	private Stopwords stopwords;
+	
 	private Function<List<RichNode>, List<Boolean>> pruningCriteria;
 
 	private JCas questionCas;
@@ -69,7 +72,7 @@ public class RerankingTestOnlyRel implements Reranking {
 
 	public RerankingTestOnlyRel(FileManager fm, String outputDir, Analyzer ae,
 			TreeSerializer ts, PairFeatureFactory pairFeatureFactory,
-			TokenTreeProvider tokenTreeProvider, MarkTreesOnRepresentation marker) throws UIMAException {
+			TokenTreeProvider tokenTreeProvider, MarkTreesOnRepresentation marker, Stopwords stopwords) throws UIMAException {
 		this.fm = fm;
 		this.outputDir = outputDir;
 		this.outputFile = outputDir + DEFAULT_OUTPUT_TEST_FILE;
@@ -83,6 +86,8 @@ public class RerankingTestOnlyRel implements Reranking {
 		this.tokenTreeProvider = tokenTreeProvider;
 		
 		this.marker = marker;
+		
+		this.stopwords = stopwords;
 		
 		this.pruner = new PosChunkPruner(-1);	
 		this.pruningCriteria = new PruneIfNodeIsWithoutMetadata(RichNode.REL_KEY);
@@ -133,7 +138,7 @@ public class RerankingTestOnlyRel implements Reranking {
 			 * Produce the feature vectors
 			 */
 			FeatureVector fv = this.pairFeatureFactory.getPairFeatures(
-					this.questionCas, this.candidateCas, this.parameterList);
+					this.questionCas, this.candidateCas, this.parameterList, this.stopwords);
 
 			StringBuffer sb = new StringBuffer(1024 * 4);
 			String label = candidateObject.isPositive() ? "+1" : "-1";

@@ -24,6 +24,7 @@ import qa.qcri.qf.trees.providers.TokenTreeProvider;
 import qa.qcri.qf.trees.pruning.PosChunkPruner;
 import qa.qcri.qf.trees.pruning.strategies.PruneIfNodeIsWithoutMetadata;
 import util.Pair;
+import util.Stopwords;
 import cc.mallet.types.FeatureVector;
 
 import com.google.common.base.Function;
@@ -63,6 +64,8 @@ public class RerankingTrainOnlyRel implements Reranking {
 	
 	private PosChunkPruner pruner;
 	
+	private Stopwords stopwords;
+	
 	private Function<List<RichNode>, List<Boolean>> pruningCriteria;
 	
 	private JCas questionCas;
@@ -73,7 +76,7 @@ public class RerankingTrainOnlyRel implements Reranking {
 
 	public RerankingTrainOnlyRel(FileManager fm, String outputDir, Analyzer ae,
 			TreeSerializer ts, PairFeatureFactory pairFeatureFactory, TokenTreeProvider tokenTreeProvider,
-			MarkTreesOnRepresentation marker) throws UIMAException {
+			MarkTreesOnRepresentation marker, Stopwords stopwords) throws UIMAException {
 		this.fm = fm;
 		this.outputDir = outputDir;
 		this.outputFile = outputDir + DEFAULT_OUTPUT_TRAIN_FILE;
@@ -87,6 +90,8 @@ public class RerankingTrainOnlyRel implements Reranking {
 		this.tokenTreeProvider = tokenTreeProvider;
 		
 		this.marker = marker;
+		
+		this.stopwords = stopwords;
 		
 		this.pruner = new PosChunkPruner(-1);
 		this.pruningCriteria = new PruneIfNodeIsWithoutMetadata(RichNode.REL_KEY);
@@ -156,9 +161,9 @@ public class RerankingTrainOnlyRel implements Reranking {
 			 * Produce the feature vectors
 			 */
 			FeatureVector leftFv = this.pairFeatureFactory.getPairFeatures(
-					this.questionCas, this.leftCandidateCas, this.parameterList);
+					this.questionCas, this.leftCandidateCas, this.parameterList, this.stopwords);
 			FeatureVector rightFv = this.pairFeatureFactory.getPairFeatures(
-					this.questionCas, this.rightCandidateCas, this.parameterList);
+					this.questionCas, this.rightCandidateCas, this.parameterList, this.stopwords);
 
 			StringBuffer sb = new StringBuffer(1024 * 4);
 			String label = leftPair.isPositive() ? "+1" : "-1";

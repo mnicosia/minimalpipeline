@@ -28,6 +28,7 @@ import qa.qcri.qf.treemarker.MarkTwoAncestors;
 import qa.qcri.qf.trees.TreeSerializer;
 import qa.qcri.qf.trees.nodes.RichNode;
 import qa.qcri.qf.trees.providers.PosChunkTreeProvider;
+import util.Stopwords;
 import cc.mallet.types.Alphabet;
 
 import com.google.common.base.Joiner;
@@ -136,6 +137,8 @@ public class TrecPipelineTestOnlyRel {
 			/* Set the correct stowords file for the specified language. */
 			String stoplist = lang.equals("it") ? STOPWORDS_IT_PATH : STOPWORDS_EN_PATH;
 			
+			Stopwords stopwords = new Stopwords(stoplist);
+			
 			MarkTreesOnRepresentation marker = new MarkTreesOnRepresentation(
 					new MarkTwoAncestors()).useStopwords(stoplist);			
 
@@ -160,7 +163,7 @@ public class TrecPipelineTestOnlyRel {
 			 */
 			Reranking dataGenerator = new RerankingTestOnlyRel(fm, testOutputDir, ae,
 					new TreeSerializer().enableRelationalTags(), pf,
-					new PosChunkTreeProvider(), marker).setParameterList(parameterList);
+					new PosChunkTreeProvider(), marker, stopwords).setParameterList(parameterList);
 
 			pipeline.setCandidatesToKeep(candidatesToKeepInTest);
 

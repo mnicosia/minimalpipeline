@@ -203,9 +203,9 @@ public class PairFeatureFactory {
 	}
 
 	public FeatureVector getPairFeatures(JCas aCas, JCas bCas,
-			String parameterList) {
+			String parameterList, Stopwords stopwords) {
 		
-		this.setupMeasures(parameterList);
+		this.setupMeasures(parameterList, stopwords);
 
 		AugmentableFeatureVector fv = new AugmentableFeatureVector(
 				this.alphabet);
