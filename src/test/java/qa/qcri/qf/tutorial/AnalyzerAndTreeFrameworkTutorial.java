@@ -24,6 +24,7 @@ import qa.qcri.qf.trees.TokenTree;
 import qa.qcri.qf.trees.TreeSerializer;
 import qa.qcri.qf.trees.TreeUtil;
 import qa.qcri.qf.trees.nodes.RichNode;
+import util.Stopwords;
 import cc.mallet.types.Alphabet;
 import cc.mallet.types.FeatureVector;
 
@@ -248,7 +249,7 @@ public class AnalyzerAndTreeFrameworkTutorial {
 		/**
 		 * We compute the features between question and passage, using node lemmas
 		 */
-		FeatureVector fv = pf.getPairFeatures(questionCas, passageCas, RichNode.OUTPUT_PAR_LEMMA);
+		FeatureVector fv = pf.getPairFeatures(questionCas, passageCas, RichNode.OUTPUT_PAR_LEMMA, new Stopwords());
 		
 		/**
 		 * We print the features

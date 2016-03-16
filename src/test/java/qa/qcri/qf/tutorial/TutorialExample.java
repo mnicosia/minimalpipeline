@@ -26,6 +26,7 @@ import qa.qcri.qf.trees.TreeSerializer;
 import qa.qcri.qf.trees.nodes.RichNode;
 import qa.qcri.qf.trees.pruning.PosChunkPruner;
 import qa.qcri.qf.trees.pruning.strategies.PruneIfNodeIsWithoutMetadata;
+import util.Stopwords;
 import cc.mallet.types.Alphabet;
 import cc.mallet.types.FeatureVector;
 
@@ -82,7 +83,7 @@ public class TutorialExample {
 		 * Compute some features using the default ones instantiated by the factory
 		 */
 		PairFeatureFactory pf = new PairFeatureFactory(new Alphabet());
-		FeatureVector fv = pf.getPairFeatures(questionCas, passageCas, parameterList);	
+		FeatureVector fv = pf.getPairFeatures(questionCas, passageCas, parameterList, new Stopwords());	
 		
 		System.out.println(fv);
 		
