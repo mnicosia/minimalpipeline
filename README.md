@@ -1,6 +1,10 @@
 # Minimal Structural Reranking Pipeline
 
-This is a stripped down version of the reranking pipeline (no question classification/focus identification).  
+This is a stripped down version of the reranking pipeline (no question classification/focus identification).
+
+If you want to know more about the pipeline used in our papers you can start with:
+* [Building	Structures from Classifiers for Passage Reranking, paper](http://www.qcri.com/app/media/2060)
+* [Building	Structures from Classifiers for Passage Reranking, slides](http://disi.unitn.it/~severyn/papers/cikm-2013-slides.pdf)
 
 With this software you will be able to apply structural reranking on a question answering dataset.  
 
