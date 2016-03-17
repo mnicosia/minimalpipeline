@@ -29,6 +29,8 @@ export UIMA_HOME="path/to/dir/of/uima"
 
 Add the line to  ~/.bashrc or ~/.bash_profile in order to automatically set the variable in the future.
 
+If you use Windows please refer to: http://www.computerhope.com/issues/ch000549.htm
+
 ### Maven
 
 You will need Maven for building this project. Install maven for your operating system (e.g. sudo
