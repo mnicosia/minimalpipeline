@@ -18,6 +18,7 @@ import qa.qcri.qf.trees.nodes.RichChunkNode;
 import qa.qcri.qf.trees.nodes.RichConstituentNode;
 import qa.qcri.qf.trees.nodes.RichDependencyNode;
 import qa.qcri.qf.trees.nodes.RichNode;
+import qa.qcri.qf.trees.nodes.RichPosNode;
 import qa.qcri.qf.trees.nodes.RichTokenNode;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
@@ -204,6 +205,72 @@ public class RichTree {
 				RichDependencyNode depNode = newRichDependencyNode(cas,tokenNode, ROOT_LABEL);
 				root.addChild(depNode);
 				depNode.addChild(tokenNode);
+			}
+		}
+		
+		return root;
+	}
+	
+	/**
+	 * Builds a Lexically Centered Tree (LCT) from an annotated CAS. The CAS must contain
+	 * sentence boundaries, tokens, POStags and dependencies
+	 * 
+	 * @param cas
+	 *            the UIMA JCas
+	 * @return the LCT tree, as a TokenTree
+	 * 
+	 * @see TokenTree
+	 */
+	public static TokenTree getLctTree(JCas cas) {
+		if (cas == null) {
+			throw new NullPointerException("CAS is null");
+		}
+		
+		// In literature SVMLightTK trees are wrapped in a root node labelled TOP.
+		TokenTree root = new TokenTree();
+		root.setValue("TOP");
+		
+		Map<Token, RichTokenNode> nodeMap = new HashMap<>();
+		Map<RichTokenNode, Dependency> dependencyMap = new HashMap<>();
+
+		Collection<Dependency> deps = JCasUtil.select(cas, Dependency.class);
+		for (Dependency dep : deps) {
+			RichTokenNode govNode = getOrAddIfNew(dep.getGovernor(), nodeMap);
+			RichTokenNode depNode = getOrAddIfNew(dep.getDependent(), nodeMap);
+			govNode.addChild(depNode);
+			
+			dependencyMap.put(depNode, dep);
+		}
+
+		// Sort token nodes
+		List<RichTokenNode> tokenNodes = new ArrayList<>(nodeMap.values());
+		Collections.sort(tokenNodes, new Comparator<RichTokenNode>() {
+			@Override
+			public int compare(RichTokenNode o1, RichTokenNode o2) {
+				return o1.getToken().getBegin() - o2.getToken().getBegin();
+			}
+		});
+
+		// Add token nodes
+		for (RichTokenNode tokenNode : tokenNodes) {
+			root.addToken(tokenNode);
+
+			if (!tokenNode.hasParent()) {
+				root.addChild(tokenNode);
+			}
+		}
+		
+		for (RichTokenNode tokenNode : tokenNodes) {
+			// Add the postag of the current token
+			tokenNode.addChild(new RichPosNode(tokenNode.getToken().getPos()));
+			
+			// Add the relation of the dependency label of the current token as last child
+			if (dependencyMap.containsKey(tokenNode)) {
+				RichDependencyNode dependencyNode = new RichDependencyNode(dependencyMap.get(tokenNode));
+				tokenNode.addChild(dependencyNode);
+			} else {
+				RichDependencyNode dependencyNode = newRichDependencyNode(cas, tokenNode, ROOT_LABEL);
+				tokenNode.addChild(dependencyNode);
 			}
 		}
 		
