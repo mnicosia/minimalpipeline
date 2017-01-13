@@ -213,6 +213,12 @@
 		<scope>system</scope>
 		<systemPath>${project.basedir}/lib/PTK.jar</systemPath>
 	</dependency>
+	<dependency>
+		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+		<artifactId>
+			de.tudarmstadt.ukp.dkpro.core.clearnlp-asl
+		</artifactId>
+	</dependency>
   </dependencies>
   <build>
 	<plugins>
