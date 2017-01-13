@@ -15,6 +15,7 @@ public interface RichNode {
 	public static final String TYPE_KEY = "type_key";
 	public static final String TYPE_TOKEN_NODE = "type_token";
 	public static final String TYPE_CHUNK_NODE = "type_chunk";
+	public static final String TYPE_POS_NODE = "type_pos";
 
 	public static final String TYPE_DEPENDENCY_NODE = "type_dependency";
 	public static final String TYPE_CONSTITUENT_NODE = "type_constituent";
